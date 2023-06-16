@@ -19,7 +19,7 @@ namespace MealPlan.ViewModel
 
         public MainPageViewModel(ISecureStorageService secureStorageService)
         {
-            this.secureStorageService = secureStorageService;   
+            this.secureStorageService = secureStorageService;
         }
         [ObservableProperty]
         string pin;
@@ -28,7 +28,7 @@ namespace MealPlan.ViewModel
         [RelayCommand]
         private async Task SavePin(string savePin)
         {
-            await secureStorageService.Save("pin",savePin);
+            await secureStorageService.Save("pin", savePin);
             LoginError = "Pin Saved";
         }
         [RelayCommand]
@@ -39,24 +39,36 @@ namespace MealPlan.ViewModel
             if (checkedPin == "null")
             {
                 await SavePin(Pin);
+                Navigate();
             }
-            
-          
-    
+            else if (checkedPin == "true")
+            {
+                LoginError = "Success";
+                Navigate();
+            }
+            else
+            {
+                LoginError = "Failed to Login";
+            }
+
         }
         [RelayCommand]
         void PinButton(string pinNo)
         {
-                Pin += pinNo;
+            Pin += pinNo;
         }
 
         [RelayCommand]
         void DelButton()
         {
             if (Pin.Length > 0)
-                {
+            {
                 Pin = Pin.Remove(Pin.Length - 1, 1);
             }
+        }
+        private async void Navigate()
+        {
+            await Shell.Current.GoToAsync(nameof(View.CreateRecipePage));
         }
     }
 }

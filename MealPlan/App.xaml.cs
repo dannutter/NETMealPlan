@@ -2,7 +2,7 @@
 
 public partial class App : Application
 {
-	public App(MainPage page)
+	public App(View.MainPage page)
 	{
 		InitializeComponent();
 

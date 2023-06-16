@@ -1,4 +1,5 @@
 ﻿using MealPlan.Services;
+using MealPlan.View;
 using MealPlan.ViewModel;
 using Microsoft.Extensions.Logging;
 
@@ -16,15 +17,17 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			});
-       
-			
+
+        builder.Services.AddSingleton<ISecureStorageService, SecureStorageService>();
+        builder.Services.AddSingleton<MainPage>();
+        builder.Services.AddSingleton<MainPageViewModel>();
+        builder.Services.AddSingleton<CreateRecipePage>();
+        builder.Services.AddSingleton<CreateRecipeViewModel>();
 
 #if DEBUG
         builder.Logging.AddDebug();
 #endif
-        builder.Services.AddSingleton<ISecureStorageService, SecureStorageService>();
-        builder.Services.AddSingleton<MainPage>();
-        builder.Services.AddSingleton<MainPageViewModel>();
+        
         return builder.Build();
 	}
 }

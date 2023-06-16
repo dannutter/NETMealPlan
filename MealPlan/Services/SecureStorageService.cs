@@ -26,7 +26,7 @@ namespace MealPlan.Services
                     {
                         return "true";
                     }
-                    return "Login Failed";
+                    return "false";
                 }
             }
             catch

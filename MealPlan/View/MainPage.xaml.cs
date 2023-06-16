@@ -1,4 +1,4 @@
-﻿namespace MealPlan;
+﻿namespace MealPlan.View;
 
 public partial class MainPage : ContentPage
 {
