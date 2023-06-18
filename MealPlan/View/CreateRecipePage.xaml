@@ -106,6 +106,14 @@
                 HeightRequest="250"
                 MinimumHeightRequest="250"
                 />
+            <Button
+                x:Name="SubRec"
+                Text="+"
+                BackgroundColor="#0BDA51"
+                Command="{Binding SaveCommand}"
+                Grid.Row="0"
+                Grid.Column="1"
+                />
         </VerticalStackLayout>
         
     </ScrollView>

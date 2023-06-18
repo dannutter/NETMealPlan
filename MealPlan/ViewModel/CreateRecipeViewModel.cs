@@ -1,6 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using MealPlan.DataAccess;
+using MealPlan.Model;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -45,7 +48,7 @@ namespace MealPlan.ViewModel
             {
                 return;
             }
-            string Temp = IngredientName + "    |   " + Grams + "g   |  " + Group;
+            string Temp = IngredientName + "|" + Grams + "|" + Group;
             Ingredients.Add(Temp);
             IngredientName = Grams = Group = string.Empty;
         }
@@ -56,6 +59,68 @@ namespace MealPlan.ViewModel
             {
                 Ingredients.Remove(r);
             }
+        }
+        [RelayCommand]  
+        async void Save()
+        {
+            int val = 0;
+            IDictionary<string, int> IngredientGroup = new Dictionary<string, int>();
+            IngredientGroup.Add("Fruit and vegetables", 1);
+            IngredientGroup.Add("Starchy food", 2);
+            IngredientGroup.Add("Dairy", 3);
+            IngredientGroup.Add("Protein", 4);
+            IngredientGroup.Add("High in Fat/Sugar", 5);
+            IngredientGroup.Add("Other", 6);
+
+            int[] GroupTotal = { 0, 0, 0, 0, 0, 0 };
+            string Ingredientlist = string.Empty;
+            IngredientDb ingredientdb = await IngredientDb.Instance;
+            foreach (string ingredient in Ingredients)
+            {
+                string[] splitIngredient = ingredient.Split('|');
+                Ingredient Quer = await ingredientdb.GetAsync(splitIngredient[0]);
+                if (Quer != null)
+                {
+                    Ingredientlist += Quer.Id + ",";
+                }
+                else
+                {
+                    Ingredient NewIngredient = new();
+                    NewIngredient.Name = splitIngredient[0];
+                    NewIngredient.Group = splitIngredient[2];
+                    await ingredientdb.SaveAsync(NewIngredient);
+                    Quer = await ingredientdb.GetAsync(splitIngredient[0]);
+                    Ingredientlist += Quer.Id + ",";
+                }
+                Int32.TryParse(splitIngredient[1], out val);
+                GroupTotal[IngredientGroup[splitIngredient[2]]] += val;
+                Ingredientlist = Ingredientlist.Remove(Ingredientlist.Length - 1, 1);
+
+
+            }
+            Recipe Temp = new();
+            Temp.Other = GroupTotal[5];
+            Temp.FatSugar = GroupTotal[4];
+            Temp.Protein = GroupTotal[3];
+            Temp.Dairy = GroupTotal[2];
+            Temp.StarchyFood = GroupTotal[1];
+            Temp.Fruitandvegetables = GroupTotal[0];
+
+
+            Temp.Name = RecipeName;
+            Temp.Instructions = Instructions;
+            Int32.TryParse(Cook,out val);
+            Temp.CookTime = val;
+            val = 0;
+            Int32.TryParse(Prep, out val);
+            Temp.PrepTime = val;
+            val = 0;
+            Int32.TryParse(Servings, out val);
+            Temp.Servings = val;
+            CreateRecipeDb database = await CreateRecipeDb.Instance;
+            await database.SaveAsync(Temp);
+            RecipeName = Ingredientlist;
+            
         }
     }
 }

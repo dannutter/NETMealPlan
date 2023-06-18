@@ -52,13 +52,9 @@
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="SQLite" Version="3.13.0" />
+		<PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
 		<PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.5" />
 		<PackageReference Include="System.Data.SQLite" Version="1.0.118" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="DataAccess\" />
-	  <Folder Include="Model\" />
 	</ItemGroup>
 
 	<ItemGroup>

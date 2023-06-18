@@ -1,7 +1,9 @@
 ﻿using MealPlan.Services;
 using MealPlan.View;
 using MealPlan.ViewModel;
+using MealPlan.Model;
 using Microsoft.Extensions.Logging;
+using MealPlan.DataAccess;
 
 namespace MealPlan;
 
@@ -23,6 +25,11 @@ public static class MauiProgram
         builder.Services.AddSingleton<MainPageViewModel>();
         builder.Services.AddSingleton<CreateRecipePage>();
         builder.Services.AddSingleton<CreateRecipeViewModel>();
+        builder.Services.AddSingleton<CreateRecipeDb>();
+        builder.Services.AddSingleton<Recipe>();
+        builder.Services.AddSingleton<Ingredient>();
+        builder.Services.AddSingleton<IngredientDb>();
+
 
 #if DEBUG
         builder.Logging.AddDebug();
