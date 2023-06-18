@@ -6,6 +6,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,6 +40,10 @@ namespace MealPlan.ViewModel
 
         [ObservableProperty]
         string ingredientName, grams, group;
+        [ObservableProperty]
+        byte[] bytes;
+        [ObservableProperty]
+        Stream sourceStream;
 
 
         [RelayCommand]
@@ -60,7 +65,27 @@ namespace MealPlan.ViewModel
                 Ingredients.Remove(r);
             }
         }
-        [RelayCommand]  
+        [RelayCommand]
+        async void TakePicture()
+        {
+            
+            if (MediaPicker.Default.IsCaptureSupported)
+            {
+                FileResult photo = await MediaPicker.Default.CapturePhotoAsync();
+                if (photo != null)
+                {
+                    SourceStream = await photo.OpenReadAsync();
+                }
+            }
+
+            using (var reader = new StreamReader(SourceStream))
+            {
+                Bytes = System.Text.Encoding.UTF8.GetBytes(reader.ReadToEnd());
+            }
+
+        }
+
+            [RelayCommand]  
         async void Save()
         {
             int val = 0;
@@ -94,10 +119,8 @@ namespace MealPlan.ViewModel
                 }
                 Int32.TryParse(splitIngredient[1], out val);
                 GroupTotal[IngredientGroup[splitIngredient[2]]] += val;
-                Ingredientlist = Ingredientlist.Remove(Ingredientlist.Length - 1, 1);
-
-
             }
+            Ingredientlist = Ingredientlist.Remove(Ingredientlist.Length - 1, 1);
             Recipe Temp = new();
             Temp.Other = GroupTotal[5];
             Temp.FatSugar = GroupTotal[4];
@@ -105,10 +128,10 @@ namespace MealPlan.ViewModel
             Temp.Dairy = GroupTotal[2];
             Temp.StarchyFood = GroupTotal[1];
             Temp.Fruitandvegetables = GroupTotal[0];
-
-
             Temp.Name = RecipeName;
             Temp.Instructions = Instructions;
+            Temp.Image = Bytes;
+            val = 0;
             Int32.TryParse(Cook,out val);
             Temp.CookTime = val;
             val = 0;
@@ -119,8 +142,7 @@ namespace MealPlan.ViewModel
             Temp.Servings = val;
             CreateRecipeDb database = await CreateRecipeDb.Instance;
             await database.SaveAsync(Temp);
-            RecipeName = Ingredientlist;
-            
+
         }
     }
 }

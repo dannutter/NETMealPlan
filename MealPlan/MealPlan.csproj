@@ -64,12 +64,24 @@
 	  <Compile Update="View\CreateRecipePage.xaml.cs">
 	    <DependentUpon>CreateRecipePage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="View\RecipeListPage.xaml.cs">
+	    <DependentUpon>RecipeListPage.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
 	  <MauiXaml Update="View\CreateRecipePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="View\RecipeListPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0-android'">
+	  <PackageReference Include="FastAndroidCamera">
+	    <Version>2.0.0</Version>
+	  </PackageReference>
 	</ItemGroup>
 
 </Project>

@@ -25,10 +25,15 @@ public static class MauiProgram
         builder.Services.AddSingleton<MainPageViewModel>();
         builder.Services.AddSingleton<CreateRecipePage>();
         builder.Services.AddSingleton<CreateRecipeViewModel>();
+        builder.Services.AddSingleton<RecipeListPage>();
+        builder.Services.AddSingleton<RecipeListViewModel>();
+
+
         builder.Services.AddSingleton<CreateRecipeDb>();
         builder.Services.AddSingleton<Recipe>();
         builder.Services.AddSingleton<Ingredient>();
         builder.Services.AddSingleton<IngredientDb>();
+
 
 
 #if DEBUG

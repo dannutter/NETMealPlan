@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MealPlan.Model;
-using MealPlan.Services;
 //inspiration from MAUI documentation
 namespace MealPlan.DataAccess
 {

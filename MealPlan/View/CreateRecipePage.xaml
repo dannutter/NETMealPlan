@@ -61,6 +61,12 @@
                 Grid.Column="1"
                 />
             </Grid>
+            <Button
+                x:Name="Picture"
+                Text="Take Picture"
+                BackgroundColor="#0BDA51"
+                Command="{Binding TakePictureCommand}"
+                />
             <Entry
                 Text="{Binding IngredientName}" 
                 Placeholder="Ingredient Name"
@@ -111,9 +117,8 @@
                 Text="+"
                 BackgroundColor="#0BDA51"
                 Command="{Binding SaveCommand}"
-                Grid.Row="0"
-                Grid.Column="1"
                 />
+            
         </VerticalStackLayout>
         
     </ScrollView>
