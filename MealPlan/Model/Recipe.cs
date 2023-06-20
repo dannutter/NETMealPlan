@@ -14,7 +14,7 @@ namespace MealPlan.Model
         public int RecipeId { get; set; }
         public string Name { get; set; }
         public string Ingredients { get; set; }
-        //public string Amounts { get; set; }
+        public string Amounts { get; set; }
         public byte[] Image { get; set; }
         public int CookTime { get; set; }
         public int PrepTime { get; set; }

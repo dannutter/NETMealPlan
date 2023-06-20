@@ -49,12 +49,14 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Maui" Version="5.2.0" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="SQLite" Version="3.13.0" />
 		<PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
 		<PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.5" />
 		<PackageReference Include="System.Data.SQLite" Version="1.0.118" />
+		<PackageReference Include="Xam.Plugin.Media" Version="5.0.1" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -64,6 +66,15 @@
 	  <Compile Update="View\CreateRecipePage.xaml.cs">
 	    <DependentUpon>CreateRecipePage.xaml</DependentUpon>
 	  </Compile>
+<<<<<<< Updated upstream
+=======
+	  <Compile Update="View\IngredientDetailPage.xaml.cs">
+	    <DependentUpon>IngredientDetailPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="View\IngredientIndividualPage.xaml.cs">
+	    <DependentUpon>IngredientIndividualPage.xaml</DependentUpon>
+	  </Compile>
+>>>>>>> Stashed changes
 	  <Compile Update="View\RecipeListPage.xaml.cs">
 	    <DependentUpon>RecipeListPage.xaml</DependentUpon>
 	  </Compile>
@@ -71,6 +82,9 @@
 
 	<ItemGroup>
 	  <MauiXaml Update="View\CreateRecipePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="View\IngredientIndividualPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="View\RecipeListPage.xaml">

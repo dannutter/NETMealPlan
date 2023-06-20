@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MealPlan.View.IngredientIndividualPage"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             Title="{Binding Name}"
+             xmlns:viewmodel="clr-namespace:MealPlan.ViewModel"
+             xmlns:models="clr-namespace:MealPlan.Model"
+             x:DataType="viewmodel:IngredientIndividualViewModel">
+    <VerticalStackLayout VerticalOptions="FillAndExpand">
+        <Label 
+            Text="{Binding Name}"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <Label 
+            Text="{Binding PhotoPath}"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+
+        <CarouselView IndicatorView="indicatorView" ItemsSource="{Binding ImageArray}" HeightRequest="500" >
+            <CarouselView.ItemTemplate>
+                <DataTemplate x:DataType="models:Page">
+                    <VerticalStackLayout>
+                        <Image Source="{Binding ImageURL}"
+                                   VerticalOptions="FillAndExpand">
+                        </Image>
+
+
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+        </CarouselView>
+        <IndicatorView x:Name="indicatorView"
+                   IndicatorColor="LightGray"
+                   SelectedIndicatorColor="DarkGray"
+                   HorizontalOptions="Center" 
+                       Margin="15"/>
+
+        <Button Text="Add picture" Command="{Binding TakePictureCommand}"></Button>
+    </VerticalStackLayout>
+</ContentPage>

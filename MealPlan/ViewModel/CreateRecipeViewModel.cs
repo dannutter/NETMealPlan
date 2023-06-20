@@ -99,6 +99,7 @@ namespace MealPlan.ViewModel
 
             int[] GroupTotal = { 0, 0, 0, 0, 0, 0 };
             string Ingredientlist = string.Empty;
+            string Ingredientamount = string.Empty;
             IngredientDb ingredientdb = await IngredientDb.Instance;
             foreach (string ingredient in Ingredients)
             {
@@ -113,14 +114,19 @@ namespace MealPlan.ViewModel
                     Ingredient NewIngredient = new();
                     NewIngredient.Name = splitIngredient[0];
                     NewIngredient.Group = splitIngredient[2];
+                    NewIngredient.Image1 = null;
+                    NewIngredient.Image2 = null;
+                    NewIngredient.Image3 = null;
                     await ingredientdb.SaveAsync(NewIngredient);
                     Quer = await ingredientdb.GetAsync(splitIngredient[0]);
                     Ingredientlist += Quer.Id + ",";
                 }
                 Int32.TryParse(splitIngredient[1], out val);
                 GroupTotal[IngredientGroup[splitIngredient[2]]] += val;
+                Ingredientamount += splitIngredient[1]+",";
             }
             Ingredientlist = Ingredientlist.Remove(Ingredientlist.Length - 1, 1);
+            Ingredientamount = Ingredientamount.Remove(Ingredientamount.Length - 1, 1);
             Recipe Temp = new();
             Temp.Other = GroupTotal[5];
             Temp.FatSugar = GroupTotal[4];
@@ -130,6 +136,8 @@ namespace MealPlan.ViewModel
             Temp.Fruitandvegetables = GroupTotal[0];
             Temp.Name = RecipeName;
             Temp.Instructions = Instructions;
+            Temp.Ingredients = Ingredientlist;
+            Temp.Amounts = Ingredientamount;
             Temp.Image = Bytes;
             val = 0;
             Int32.TryParse(Cook,out val);
