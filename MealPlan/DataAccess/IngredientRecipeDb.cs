@@ -35,7 +35,7 @@ namespace MealPlan.DataAccess
             IngDatabase = new SQLiteAsyncConnection(SQLdb.DatabasePath, SQLdb.Flags);
         }
 
-        public Task<List<Ingredient>> GetRecipesAsync()
+        public Task<List<Ingredient>> GetIngAsync()
         {
             return IngDatabase.Table<Ingredient>().ToListAsync();
         }

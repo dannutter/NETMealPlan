@@ -9,11 +9,7 @@ public partial class AppShell : Shell
 		InitializeComponent();
 
 		Routing.RegisterRoute(nameof(CreateRecipePage), typeof(CreateRecipePage));
-<<<<<<< Updated upstream
-	}
-=======
         Routing.RegisterRoute(nameof(IngredientDetailPage), typeof(IngredientDetailPage));
         Routing.RegisterRoute(nameof(IngredientIndividualPage), typeof(IngredientIndividualPage));
     }
->>>>>>> Stashed changes
 }

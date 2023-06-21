@@ -90,12 +90,12 @@ namespace MealPlan.ViewModel
         {
             int val = 0;
             IDictionary<string, int> IngredientGroup = new Dictionary<string, int>();
-            IngredientGroup.Add("Fruit and vegetables", 1);
-            IngredientGroup.Add("Starchy food", 2);
-            IngredientGroup.Add("Dairy", 3);
-            IngredientGroup.Add("Protein", 4);
-            IngredientGroup.Add("High in Fat/Sugar", 5);
-            IngredientGroup.Add("Other", 6);
+            IngredientGroup.Add("Fruit and vegetables", 0);
+            IngredientGroup.Add("Starchy food", 1);
+            IngredientGroup.Add("Dairy", 2);
+            IngredientGroup.Add("Protein", 3);
+            IngredientGroup.Add("High in Fat/Sugar", 4);
+            IngredientGroup.Add("Other", 5);
 
             int[] GroupTotal = { 0, 0, 0, 0, 0, 0 };
             string Ingredientlist = string.Empty;
