@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MealPlan.View.MealPlanPage"
+             xmlns:viewmodel="clr-namespace:MealPlan.ViewModel"
+             xmlns:models="clr-namespace:MealPlan.Model"
+             x:DataType="viewmodel:MealPlanViewModel"
+             x:Name="MealPlanViewModel">
+    <VerticalStackLayout >
+        <Label Text="Select Start Date:"></Label>
+        <DatePicker Date="{Binding StartDate}"/>
+        <Label Text="Duration:"></Label>
+        <Entry Text="{Binding Duration}" Placeholder="Enter Duration of meal plan"/>
+        <Button Text="Create table" Command="{Binding CreateTableCommand}"/>
+
+        <Grid  ColumnDefinitions="*,*,*,*" RowDefinitions="40,40,40,40,40,40,40,80" RowSpacing="5" ColumnSpacing="1" >
+            <!--Row headers-->
+            <ListView Grid.Column="0" Grid.Row="1" Grid.RowSpan="7" ItemsSource="{Binding SelectedDate}">
+            </ListView>
+            <!--Column headers-->
+
+            <Label Text="BreakFast" HorizontalOptions="Center" Grid.Column="1" Grid.Row="0"/>
+            <Label Text="Lunch" HorizontalOptions="Center" Grid.Column="2" Grid.Row="0"/>
+            <Label Text="Dinner" HorizontalOptions="Center" Grid.Column="3" Grid.Row="0"/>
+            <!--Meal Buttons-->
+            <CollectionView Grid.Column="1" Grid.Row="1" Grid.RowSpan="7" Grid.ColumnSpan="3" ItemsSource="{Binding MealSlots}">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" Span="3"></GridItemsLayout>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:MealSlot">
+                        <VerticalStackLayout HeightRequest="44" VerticalOptions="CenterAndExpand" WidthRequest="85">
+                            <Button Text="Select" IsVisible="{Binding Visible}" BackgroundColor="Cyan" HeightRequest="40" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MealPlanViewModel}}, Path=SelectMenuCommand}" CommandParameter="{Binding MealId}"></Button>
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            
+        </Grid>
+    </VerticalStackLayout>
+    </ContentPage>

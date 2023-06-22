@@ -35,6 +35,8 @@ public static class MauiProgram
         builder.Services.AddSingleton<IngredientDb>();
         builder.Services.AddTransient<Ingredient>();
         builder.Services.AddTransient<IngredientDb>();
+        builder.Services.AddTransient<MealPlanViewModel>();
+        builder.Services.AddTransient<MealPlanPage>();
 
 
 
