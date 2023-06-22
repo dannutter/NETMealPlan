@@ -6,14 +6,14 @@
              xmlns:models="clr-namespace:MealPlan.Model"
              x:DataType="viewmodel:MealPlanViewModel"
              x:Name="MealPlanViewModel">
-    <VerticalStackLayout >
+    <VerticalStackLayout VerticalOptions="FillAndExpand" >
         <Label Text="Select Start Date:"></Label>
         <DatePicker Date="{Binding StartDate}"/>
         <Label Text="Duration:"></Label>
         <Entry Text="{Binding Duration}" Placeholder="Enter Duration of meal plan"/>
         <Button Text="Create table" Command="{Binding CreateTableCommand}"/>
 
-        <Grid  ColumnDefinitions="*,*,*,*" RowDefinitions="40,40,40,40,40,40,40,80" RowSpacing="5" ColumnSpacing="1" >
+        <Grid IsVisible="{Binding HideTable}" ColumnDefinitions="*,*,*,*" RowDefinitions="40,40,40,40,40,40,40,80" RowSpacing="5" ColumnSpacing="1" >
             <!--Row headers-->
             <ListView Grid.Column="0" Grid.Row="1" Grid.RowSpan="7" ItemsSource="{Binding SelectedDate}">
             </ListView>
@@ -30,12 +30,27 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="models:MealSlot">
                         <VerticalStackLayout HeightRequest="44" VerticalOptions="CenterAndExpand" WidthRequest="85">
-                            <Button Text="Select" IsVisible="{Binding Visible}" BackgroundColor="Cyan" HeightRequest="40" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MealPlanViewModel}}, Path=SelectMenuCommand}" CommandParameter="{Binding MealId}"></Button>
+                            <Button Text="{Binding Text}" FontSize="10" IsVisible="{Binding Visible}" BackgroundColor="Gray" HeightRequest="40" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MealPlanViewModel}}, Path=SelectMenuCommand}" CommandParameter="{Binding MealId}"></Button>
                         </VerticalStackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-            
         </Grid>
+        <CollectionView IsVisible="{Binding HideMenu}" x:Name="MealColl" SelectedItem="{Binding SelectMeal}" SelectionMode="Single" ItemsSource="{Binding Meals}">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout  Orientation="Vertical" Span="1" VerticalItemSpacing="15"></GridItemsLayout>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Recipe" >
+                    <VerticalStackLayout VerticalOptions="CenterAndExpand" BackgroundColor="DimGray" HeightRequest="30">
+                        <Label FontSize="20" HorizontalOptions="Center" Text="{Binding Name}" TextColor="AntiqueWhite"/>
+                    </VerticalStackLayout>
+                </DataTemplate>
+                
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <Button Text="Cancel Select" BackgroundColor="red" TextColor="Black" VerticalOptions="End" IsVisible="{Binding HideMenu}" Command="{Binding CancelSelectCommand}"/>
+        <Button Text="Save Meal Plan" BackgroundColor="LightGreen" TextColor="Black" VerticalOptions="End" IsVisible="{Binding HideTable}" Command="{Binding SavePlanCommand}"/>
     </VerticalStackLayout>
+
     </ContentPage>
