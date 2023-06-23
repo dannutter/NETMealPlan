@@ -58,6 +58,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="View\MealPlanListPage.xaml.cs">
+	    <DependentUpon>MealPlanListPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="View\MealPlanPage.xaml.cs">
 	    <DependentUpon>MealPlanPage.xaml</DependentUpon>
 	  </Compile>
@@ -72,6 +75,10 @@
 	  </Compile>
 
 	  <MauiXaml Update="View\CreateRecipePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+
+	  <MauiXaml Update="View\MealPlanListPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 

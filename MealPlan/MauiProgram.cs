@@ -39,6 +39,8 @@ public static class MauiProgram
         builder.Services.AddTransient<MealPlanPage>();
         builder.Services.AddSingleton<Meal_Plan>();
         builder.Services.AddTransient<MealPlanDb>();
+        builder.Services.AddTransient<MealPlanListViewModel>();
+        builder.Services.AddTransient<MealPlanListPage>();
 
 
 

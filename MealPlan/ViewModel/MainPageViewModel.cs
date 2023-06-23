@@ -68,7 +68,7 @@ namespace MealPlan.ViewModel
         }
         private async void Navigate()
         {
-            await Shell.Current.GoToAsync(nameof(View.MealPlanPage));
+            await Shell.Current.GoToAsync(nameof(View.MealPlanListPage));
         }
     }
 }
