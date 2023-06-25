@@ -6,5 +6,7 @@ namespace MealPlan.Services
     {
         Task Save(string key,string value);
         Task<string> Get(string pin);
+        Task LogOut();
+        Task<bool> CheckAuth();
     }
 }

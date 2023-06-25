@@ -24,7 +24,8 @@ namespace MealPlan.Services
                 {
                     if (ReturnedPin == pin)
                     {
-                        return "true";
+                        await SecureStorage.SetAsync("Auth", "true");
+                        return "true";                       
                     }
                     return "false";
                 }
@@ -39,6 +40,27 @@ namespace MealPlan.Services
         {
             await SecureStorage.SetAsync(key, value);
         }
-            
+        public async Task LogOut()
+        {
+            await SecureStorage.SetAsync("Auth", "false");
+        }
+
+        public async Task<bool> CheckAuth()
+        {
+            var ReturnedAuth = await SecureStorage.Default.GetAsync("Auth");
+            if (ReturnedAuth==null)
+            {
+                return false;
+            }
+            else
+            {
+                if (ReturnedAuth=="true")
+                {
+                    return true;
+                }
+                return false;
+            }
+        }
+
     }
 }
