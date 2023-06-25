@@ -10,6 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace MealPlan.ViewModel
 {
@@ -41,7 +42,7 @@ namespace MealPlan.ViewModel
         [ObservableProperty]
         string ingredientName, grams, group;
         [ObservableProperty]
-        byte[] bytes;
+        string photoPath;
         [ObservableProperty]
         Stream sourceStream;
 
@@ -57,6 +58,7 @@ namespace MealPlan.ViewModel
             Ingredients.Add(Temp);
             IngredientName = Grams = Group = string.Empty;
         }
+
         [RelayCommand]
         void Delete(string r)
         { 
@@ -65,27 +67,28 @@ namespace MealPlan.ViewModel
                 Ingredients.Remove(r);
             }
         }
+
         [RelayCommand]
         async void TakePicture()
         {
-            
             if (MediaPicker.Default.IsCaptureSupported)
             {
-                FileResult photo = await MediaPicker.Default.CapturePhotoAsync();
+                var photo = await MediaPicker.Default.CapturePhotoAsync();
                 if (photo != null)
                 {
-                    SourceStream = await photo.OpenReadAsync();
+                    var newFile = Path.Combine(FileSystem.CacheDirectory, photo.FileName);
+                    using (Stream stream = await photo.OpenReadAsync())
+                    using (var newStream = File.OpenWrite(newFile))
+                    {
+                        await stream.CopyToAsync(newStream);
+                    }
+                    PhotoPath = newFile;
                 }
-            }
-
-            using (var reader = new StreamReader(SourceStream))
-            {
-                Bytes = System.Text.Encoding.UTF8.GetBytes(reader.ReadToEnd());
             }
 
         }
 
-            [RelayCommand]  
+        [RelayCommand]  
         async void Save()
         {
             int val = 0;
@@ -138,7 +141,7 @@ namespace MealPlan.ViewModel
             Temp.Instructions = Instructions;
             Temp.Ingredients = Ingredientlist;
             Temp.Amounts = Ingredientamount;
-            Temp.Image = Bytes;
+            Temp.Image = PhotoPath;
             val = 0;
             Int32.TryParse(Cook,out val);
             Temp.CookTime = val;

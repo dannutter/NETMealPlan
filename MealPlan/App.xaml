@@ -2,6 +2,7 @@
 <Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:MealPlan"
+             xmlns:views="clr-namespace:MealPlan.View"
              x:Class="MealPlan.App">
     <Application.Resources>
         <ResourceDictionary>
@@ -11,4 +12,21 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
+    <Application.MainPage>
+        <Shell FlyoutBehavior="Flyout" FlyoutHeaderBehavior="Fixed" FlyoutVerticalScrollMode="Auto" FlyoutBackgroundColor="AntiqueWhite">
+            <FlyoutItem Title="Create Recipe">
+                <ShellContent ContentTemplate="{DataTemplate views:CreateRecipePage}"></ShellContent>
+            </FlyoutItem>
+            <FlyoutItem Title="Ingredients">
+                <ShellContent ContentTemplate="{DataTemplate views:IngredientDetailPage}"></ShellContent>
+            </FlyoutItem>
+            <FlyoutItem Title="Create Recipe">
+                <ShellContent ContentTemplate="{DataTemplate views:MealPlanPage}"></ShellContent>
+            </FlyoutItem>
+            <FlyoutItem Title="Create Recipe">
+                <ShellContent ContentTemplate="{DataTemplate views:MealPlanListPage}"></ShellContent>
+            </FlyoutItem>
+
+        </Shell>
+    </Application.MainPage>
 </Application>

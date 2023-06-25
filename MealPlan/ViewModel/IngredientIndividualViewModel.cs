@@ -63,9 +63,9 @@ public partial class IngredientIndividualViewModel : ObservableObject
                 PhotoPath = newFile;
             }
         }
-            Ingredient.Image1 = Ingredient.Image2;
-            Ingredient.Image2 = Ingredient.Image3;
-            Ingredient.Image3 = PhotoPath;
+            Ingredient.Image3 = Ingredient.Image2;
+            Ingredient.Image2 = Ingredient.Image1;
+            Ingredient.Image1 = PhotoPath;
             await database.SaveAsync(Ingredient);
             GetIngredient();
     }

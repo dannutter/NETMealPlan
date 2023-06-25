@@ -4,6 +4,7 @@ using MealPlan.ViewModel;
 using MealPlan.Model;
 using Microsoft.Extensions.Logging;
 using MealPlan.DataAccess;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace MealPlan;
 
@@ -27,20 +28,22 @@ public static class MauiProgram
         builder.Services.AddSingleton<CreateRecipeViewModel>();
         builder.Services.AddSingleton<IngredientDetailPage>();
         builder.Services.AddSingleton<IngredientDetailViewModel>();
-        builder.Services.AddTransient<IngredientIndividualViewModel>();
-        builder.Services.AddTransient<IngredientIndividualPage>();
+        builder.Services.AddSingleton<IngredientIndividualViewModel>();
+        builder.Services.AddSingleton<IngredientIndividualPage>();
         builder.Services.AddSingleton<CreateRecipeDb>();
-        builder.Services.AddSingleton<Recipe>();
+        builder.Services.AddScoped<Recipe>();
         builder.Services.AddSingleton<Ingredient>();
         builder.Services.AddSingleton<IngredientDb>();
-        builder.Services.AddTransient<Ingredient>();
-        builder.Services.AddTransient<IngredientDb>();
-        builder.Services.AddTransient<MealPlanViewModel>();
-        builder.Services.AddTransient<MealPlanPage>();
+        builder.Services.AddSingleton<Ingredient>();
+        builder.Services.AddSingleton<IngredientDb>();
+        builder.Services.AddSingleton<MealPlanViewModel>();
+        builder.Services.AddSingleton<MealPlanPage>();
         builder.Services.AddSingleton<Meal_Plan>();
-        builder.Services.AddTransient<MealPlanDb>();
-        builder.Services.AddTransient<MealPlanListViewModel>();
-        builder.Services.AddTransient<MealPlanListPage>();
+        builder.Services.AddSingleton<MealPlanDb>();
+        builder.Services.AddSingleton<MealPlanListViewModel>();
+        builder.Services.AddScoped<MealPlanListPage>();
+        builder.Services.AddTransient<MealPlanIndividualPage>();
+        builder.Services.AddScoped<MealPlanIndividualViewModel>();
 
 
 

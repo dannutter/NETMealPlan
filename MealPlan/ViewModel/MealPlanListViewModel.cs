@@ -6,6 +6,7 @@ using static Microsoft.Maui.ApplicationModel.Permissions;
 using System.Collections.ObjectModel;
 using MealPlan.DataAccess;
 using MealPlan.Model;
+using MealPlan.View;
 
 namespace MealPlan.ViewModel 
 {
@@ -13,6 +14,7 @@ namespace MealPlan.ViewModel
     {
         [ObservableProperty]
         ObservableCollection<Meal_Plan> plans = new();
+
         public MealPlanListViewModel()
             {
             GetPlans();
@@ -35,16 +37,15 @@ namespace MealPlan.ViewModel
                     OnPropertyChanged("SelectIngredient");
                     if (selectPlan != null)
                     {
-                        Navigate(SelectPlan.Id);
+                        Navigate(SelectPlan.Id.ToString());
                     }
                 }
             }
         }
-        async void Navigate(int Id)
-        {
-            await Shell.Current.GoToAsync(nameof(View.MealPlanPage));
 
-            //await Shell.Current.GoToAsync($"{nameof(IngredientIndividualPage)}?Name={param}");
+        async void Navigate(string planId)
+        {
+            await Shell.Current.GoToAsync($"{nameof(MealPlanIndividualPage)}?Id={planId}");
         }
     }
 }

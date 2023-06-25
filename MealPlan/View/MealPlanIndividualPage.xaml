@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MealPlan.View.MealPlanIndividualPage"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             Title="{Binding EndDate}"
+             xmlns:viewmodel="clr-namespace:MealPlan.ViewModel"
+             xmlns:models="clr-namespace:MealPlan.Model"
+             
+             x:DataType="viewmodel:MealPlanIndividualViewModel">
+    <ScrollView HeightRequest="700">
+        <CarouselView IndicatorView="indicatorView2" ItemsSource="{Binding RecipeDisplay}"  Position="1" HeightRequest="700">
+            <CarouselView.ItemTemplate>
+                <DataTemplate x:DataType="models:Recipe">
+                    <Frame HasShadow="True" CornerRadius="10" BorderColor="DarkSlateGray">
+                        <VerticalStackLayout >
+                            <Label Text="{Binding Name}" FontAttributes="Bold"></Label>
+                            <BoxView Color="Black" HeightRequest="2" HorizontalOptions="Fill"></BoxView>
+                            <Grid ColumnDefinitions="*,*" RowDefinitions="*,*,*,*" HorizontalOptions="FillAndExpand">
+                                <Label Text="Cook Time:" Grid.Column="0" Grid.Row="0"></Label>
+                                <Label Text="{Binding CookTime}" Grid.Column="0" Grid.Row="1"></Label>
+                                <Label Text="Prep Time" Grid.Column="1" Grid.Row="0"></Label>
+                                <Label Text="{Binding PrepTime}" Grid.Column="1" Grid.Row="1"></Label>
+                                <Label Text="Servings:" Grid.Column="0" Grid.Row="2"></Label>
+                                <Label Text="{Binding Servings}" Grid.Column="0" Grid.Row="3"></Label>
+                            </Grid>
+                            <BoxView Color="Black" HeightRequest="2" HorizontalOptions="Fill" Margin="5"></BoxView>
+                            <Image Source="{Binding Image}" HeightRequest="50"></Image>
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+        </CarouselView>
+
+    </ScrollView>
+</ContentPage>
