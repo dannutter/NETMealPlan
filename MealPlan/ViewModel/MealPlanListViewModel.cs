@@ -10,7 +10,7 @@ using MealPlan.View;
 
 namespace MealPlan.ViewModel 
 {
-    public partial class MealPlanListViewModel : ObservableObject
+    public partial class MealPlanListViewModel : BaseViewModel
     {
         [ObservableProperty]
         ObservableCollection<Meal_Plan> plans = new();

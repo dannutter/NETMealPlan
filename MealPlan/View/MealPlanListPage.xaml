@@ -6,19 +6,19 @@
              xmlns:models="clr-namespace:MealPlan.Model"
              xmlns:viewmodel="clr-namespace:MealPlan.ViewModel"
              x:DataType="viewmodel:MealPlanListViewModel">
+    <VerticalStackLayout>
     <Grid RowDefinitions="Auto,Auto">
-        <CollectionView Grid.Row="1" x:Name="MealPlanColl" SelectedItem="{Binding SelectPlan}" SelectionMode="Single" ItemsSource="{Binding Plans}">
-            <CollectionView.ItemsLayout>
-                <GridItemsLayout  Orientation="Vertical" Span="1" VerticalItemSpacing="15"></GridItemsLayout>
-            </CollectionView.ItemsLayout>
-            <CollectionView.ItemTemplate>
+            <CollectionView Grid.Row="1" x:Name="MealPlanColl" SelectedItem="{Binding SelectPlan}" ItemsSource="{Binding Plans}">
+                <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:Meal_Plan">
-                    <VerticalStackLayout VerticalOptions="CenterAndExpand" BackgroundColor="DarkBlue" HeightRequest="60">
-                        <Label FontSize="32" HorizontalOptions="Center" Text="{Binding StartDate}" TextColor="AntiqueWhite"/>
+                    <VerticalStackLayout>
+                        <Label Text="{Binding StartDate}"/>
                     </VerticalStackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
     </Grid>
-
+        <BoxView></BoxView>
+        <Button Text="Change Theme" Command="{Binding ThemeButtonCommand}"></Button>
+    </VerticalStackLayout>
 </ContentPage>

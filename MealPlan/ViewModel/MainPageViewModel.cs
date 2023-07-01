@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MealPlan.Services;
+using MealPlan.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,9 +14,10 @@ using System.Windows.Input;
 namespace MealPlan.ViewModel 
 {
 
-    public partial class MainPageViewModel : ObservableObject
+    public partial class MainPageViewModel : BaseViewModel
     {
         private readonly ISecureStorageService secureStorageService;
+        public bool Theme = true;
 
         public MainPageViewModel(ISecureStorageService secureStorageService)
         {

@@ -9,8 +9,8 @@ using System.Linq.Expressions;
 
 namespace MealPlan.ViewModel
 {
-	public partial class MealPlanViewModel : ObservableObject
-	{
+	public partial class MealPlanViewModel : BaseViewModel
+    {
         public string[] MealList = Enumerable.Repeat("-", 21).ToArray();
         [ObservableProperty]
 		ObservableCollection<string> selectedDate = new() ;

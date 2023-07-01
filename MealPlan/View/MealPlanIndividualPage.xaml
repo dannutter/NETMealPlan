@@ -8,15 +8,15 @@
              xmlns:models="clr-namespace:MealPlan.Model"
              
              x:DataType="viewmodel:MealPlanIndividualViewModel">
-    <ScrollView HeightRequest="700">
-        <CarouselView IndicatorView="indicatorView2" ItemsSource="{Binding RecipeDisplay}"  Position="1" HeightRequest="700">
+    <ScrollView HeightRequest="600">
+        <CarouselView IndicatorView="indicatorView2" ItemsSource="{Binding RecipeDisplay}" HeightRequest="700">
             <CarouselView.ItemTemplate>
                 <DataTemplate x:DataType="models:Recipe">
-                    <Frame HasShadow="True" CornerRadius="10" BorderColor="DarkSlateGray">
-                        <VerticalStackLayout >
-                            <Label Text="{Binding Name}" FontAttributes="Bold"></Label>
-                            <BoxView Color="Black" HeightRequest="2" HorizontalOptions="Fill"></BoxView>
-                            <Grid ColumnDefinitions="*,*" RowDefinitions="*,*,*,*" HorizontalOptions="FillAndExpand">
+                    <Frame>
+                        <VerticalStackLayout>
+                            <Label Text="{Binding Name}" ></Label>
+                            <BoxView></BoxView>
+                            <Grid ColumnDefinitions="*,*" RowDefinitions="*,*,*,*">
                                 <Label Text="Cook Time:" Grid.Column="0" Grid.Row="0"></Label>
                                 <Label Text="{Binding CookTime}" Grid.Column="0" Grid.Row="1"></Label>
                                 <Label Text="Prep Time" Grid.Column="1" Grid.Row="0"></Label>
@@ -24,13 +24,17 @@
                                 <Label Text="Servings:" Grid.Column="0" Grid.Row="2"></Label>
                                 <Label Text="{Binding Servings}" Grid.Column="0" Grid.Row="3"></Label>
                             </Grid>
-                            <BoxView Color="Black" HeightRequest="2" HorizontalOptions="Fill" Margin="5"></BoxView>
-                            <Image Source="{Binding Image}" HeightRequest="50"></Image>
+                            <BoxView></BoxView>
+                            <Grid ColumnDefinitions="*,*" RowDefinitions="*">
+                                <Image Source="{Binding Image}" Grid.Column="1"></Image>
+                                <Label Text="{Binding Ingredients}"></Label>
+                            </Grid>
+                            <BoxView></BoxView>
+                            <Label Text="{Binding Instructions}" ></Label>
                         </VerticalStackLayout>
                     </Frame>
                 </DataTemplate>
             </CarouselView.ItemTemplate>
         </CarouselView>
-
     </ScrollView>
 </ContentPage>

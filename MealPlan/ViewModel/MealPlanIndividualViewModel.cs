@@ -17,7 +17,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace MealPlan.ViewModel;
 [QueryProperty(nameof(Id), nameof(Id))]
-public partial class MealPlanIndividualViewModel : ObservableObject
+public partial class MealPlanIndividualViewModel : BaseViewModel
 {
 
     [ObservableProperty]

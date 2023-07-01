@@ -6,56 +6,41 @@
              xmlns:viewmodel="clr-namespace:MealPlan.ViewModel"
              x:DataType="viewmodel:CreateRecipeViewModel">
     <ScrollView>
-        <VerticalStackLayout
-            Spacing="10"
-            Padding="30,0"
-            VerticalOptions="Center"
-            HorizontalOptions="FillAndExpand">
+        <VerticalStackLayout>
             <Label
-                SemanticProperties.HeadingLevel="Level1"
-                FontSize="30"
                 Text="Create a Recipe"/>
             <Entry
                 Text="{Binding RecipeName}" 
                 Placeholder="Recipe Name"
                 MaxLength="20"
-                HorizontalOptions="FillAndExpand"
-
                 />
             <Entry
                 Text="{Binding Cook}" 
                 Placeholder="Cooking time (mins)"
                 MaxLength="3"
-                HorizontalOptions="FillAndExpand"
                 Keyboard="Numeric"
                 />
             <Entry
                 Text="{Binding Prep}" 
                 Placeholder="Prep Time (mins)"
                 MaxLength="3"
-                HorizontalOptions="FillAndExpand"
                 Keyboard="Numeric"
                 />
             <Entry
                 Text="{Binding Servings}" 
                 Placeholder="Servings"
                 MaxLength="3"
-                HorizontalOptions="FillAndExpand"
                 Keyboard="Numeric"
                 />
             <Grid RowDefinitions="60*"
                   ColumnDefinitions="80*,40*">
             <Label
-                SemanticProperties.HeadingLevel="Level1"
-                FontSize="17"
                 Text="Add ingredient"
-                VerticalOptions="Center"
                 Grid.Row="0"
                 Grid.Column="0"/>
             <Button
                 x:Name="SubIng"
                 Text="+"
-                BackgroundColor="#0BDA51"
                 Command="{Binding SubIngredientCommand}"
                 Grid.Row="0"
                 Grid.Column="1"
@@ -64,20 +49,18 @@
             <Button
                 x:Name="Picture"
                 Text="Take Picture"
-                BackgroundColor="#0BDA51"
                 Command="{Binding TakePictureCommand}"
                 />
             <Entry
                 Text="{Binding IngredientName}" 
                 Placeholder="Ingredient Name"
                 MaxLength="20"
-                HorizontalOptions="FillAndExpand"
                 />
             <Entry
                 Text="{Binding Grams}" 
                 Placeholder="Enter Amount (grams)"
                 MaxLength="20"
-                HorizontalOptions="FillAndExpand"
+
                 />
             <Picker Title="Select a food group"
                 ItemsSource="{Binding Groups}"
@@ -109,8 +92,6 @@
             <Editor
                 Text="{Binding Instructions}" 
                 Placeholder="Enter instructions here"
-                HeightRequest="250"
-                MinimumHeightRequest="250"
                 />
             <Button
                 x:Name="SubRec"
@@ -118,7 +99,8 @@
                 BackgroundColor="#0BDA51"
                 Command="{Binding SaveCommand}"
                 />
-            
+            <BoxView></BoxView>
+            <Button Text="Change Theme" Command="{Binding ThemeButtonCommand}"></Button>
         </VerticalStackLayout>
         
     </ScrollView>

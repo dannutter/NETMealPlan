@@ -9,7 +9,7 @@ using System.Linq.Expressions;
 
 namespace MealPlan.ViewModel;
 [QueryProperty(nameof(Name), nameof(Name))]
-public partial class IngredientIndividualViewModel : ObservableObject
+public partial class IngredientIndividualViewModel : BaseViewModel
 {
 
     public IngredientIndividualViewModel()

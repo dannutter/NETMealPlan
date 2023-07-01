@@ -6,10 +6,10 @@
     xmlns:local="clr-namespace:MealPlan"
     xmlns:views="clr-namespace:MealPlan.View"
     Shell.FlyoutBehavior="Flyout">
-   
     <ShellContent
         ContentTemplate="{DataTemplate views:MainPage}"
-        Route="MainPage" />
+        Route="MainPage" 
+        Shell.FlyoutBehavior="Disabled" />
     <FlyoutItem Title="Create Recipe">
         <ShellContent
             

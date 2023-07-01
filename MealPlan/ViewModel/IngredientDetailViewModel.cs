@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace MealPlan.ViewModel;
 
-public class IngredientDetailViewModel : BindableObject
+public class IngredientDetailViewModel : BaseViewModel
 {
 
     public IngredientDetailViewModel ()

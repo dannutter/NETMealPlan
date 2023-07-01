@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MealPlan.Services
+namespace MealPlan.Interfaces
 {
     public interface ISecureStorageService
     {

@@ -9,33 +9,24 @@
              x:DataType="viewmodel:IngredientIndividualViewModel">
     <VerticalStackLayout VerticalOptions="FillAndExpand">
         <Label 
-            Text="{Binding Name}"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+            Text="{Binding Name}"/>
         <Label 
-            Text="{Binding PhotoPath}"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+            Text="{Binding PhotoPath}"/>
 
         <CarouselView IndicatorView="indicatorView" ItemsSource="{Binding ImageArray}" HeightRequest="500" >
             <CarouselView.ItemTemplate>
                 <DataTemplate x:DataType="models:Page">
                     <VerticalStackLayout>
-                        <Image Source="{Binding ImageURL}"
-                                   VerticalOptions="FillAndExpand">
+                        <Image Source="{Binding ImageURL}">
                         </Image>
-
-
                     </VerticalStackLayout>
                 </DataTemplate>
             </CarouselView.ItemTemplate>
         </CarouselView>
-        <IndicatorView x:Name="indicatorView"
-                   IndicatorColor="LightGray"
-                   SelectedIndicatorColor="DarkGray"
-                   HorizontalOptions="Center" 
-                       Margin="15"/>
+        <IndicatorView x:Name="indicatorView"/>
 
         <Button Text="Add picture" Command="{Binding TakePictureCommand}"></Button>
+        <BoxView></BoxView>
+        <Button Text="Change Theme" Command="{Binding ThemeButtonCommand}"></Button>
     </VerticalStackLayout>
 </ContentPage>

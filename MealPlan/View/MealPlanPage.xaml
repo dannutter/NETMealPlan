@@ -29,28 +29,28 @@
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="models:MealSlot">
-                        <VerticalStackLayout HeightRequest="44" VerticalOptions="CenterAndExpand" WidthRequest="85">
-                            <Button Text="{Binding Text}" FontSize="10" IsVisible="{Binding Visible}" BackgroundColor="Gray" HeightRequest="40" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MealPlanViewModel}}, Path=SelectMenuCommand}" CommandParameter="{Binding MealId}"></Button>
+                        <VerticalStackLayout>
+                            <Button Text="{Binding Text}" IsVisible="{Binding Visible}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MealPlanViewModel}}, Path=SelectMenuCommand}" CommandParameter="{Binding MealId}"></Button>
                         </VerticalStackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
         </Grid>
-        <CollectionView IsVisible="{Binding HideMenu}" x:Name="MealColl" SelectedItem="{Binding SelectMeal}" SelectionMode="Single" ItemsSource="{Binding Meals}">
+        <CollectionView IsVisible="{Binding HideMenu}" x:Name="MealColl" SelectedItem="{Binding SelectMeal}" ItemsSource="{Binding Meals}">
             <CollectionView.ItemsLayout>
-                <GridItemsLayout  Orientation="Vertical" Span="1" VerticalItemSpacing="15"></GridItemsLayout>
+                <GridItemsLayout  Orientation="Vertical" Span="1"></GridItemsLayout>
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:Recipe" >
-                    <VerticalStackLayout VerticalOptions="CenterAndExpand" BackgroundColor="DimGray" HeightRequest="30">
-                        <Label FontSize="20" HorizontalOptions="Center" Text="{Binding Name}" TextColor="AntiqueWhite"/>
+                    <VerticalStackLayout>
+                        <Label Text="{Binding Name}"/>
                     </VerticalStackLayout>
                 </DataTemplate>
                 
             </CollectionView.ItemTemplate>
         </CollectionView>
-        <Button Text="Cancel Select" BackgroundColor="red" TextColor="Black" VerticalOptions="End" IsVisible="{Binding HideMenu}" Command="{Binding CancelSelectCommand}"/>
-        <Button Text="Save Meal Plan" BackgroundColor="LightGreen" TextColor="Black" VerticalOptions="End" IsVisible="{Binding HideTable}" Command="{Binding SavePlanCommand}"/>
+        <Button Text="Cancel Select"  IsVisible="{Binding HideMenu}" Command="{Binding CancelSelectCommand}"/>
+        <Button Text="Save Meal Plan"  IsVisible="{Binding HideTable}" Command="{Binding SavePlanCommand}"/>
     </VerticalStackLayout>
 
     </ContentPage>

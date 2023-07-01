@@ -14,7 +14,7 @@ using System.Xml.Linq;
 
 namespace MealPlan.ViewModel
 {
-    public partial class CreateRecipeViewModel : ObservableObject
+    public partial class CreateRecipeViewModel : BaseViewModel
     {
 
        

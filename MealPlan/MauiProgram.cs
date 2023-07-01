@@ -1,4 +1,5 @@
 ﻿using MealPlan.Services;
+using MealPlan.Interfaces;
 using MealPlan.View;
 using MealPlan.ViewModel;
 using MealPlan.Model;
@@ -23,6 +24,7 @@ public static class MauiProgram
 
         builder.Services.AddSingleton<ISecureStorageService, SecureStorageService>();
         builder.Services.AddSingleton<MainPage>();
+        builder.Services.AddSingleton<BaseViewModel>();
         builder.Services.AddSingleton<MainPageViewModel>();
         builder.Services.AddSingleton<CreateRecipePage>();
         builder.Services.AddSingleton<CreateRecipeViewModel>();

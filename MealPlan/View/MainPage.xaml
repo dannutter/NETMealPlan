@@ -6,135 +6,93 @@
              xmlns:viewmodel="clr-namespace:MealPlan.ViewModel"
              x:DataType="viewmodel:MainPageViewModel">
 
-    <ScrollView>
-        <VerticalStackLayout
-            Spacing="25"
-            Padding="30,0"
-            VerticalOptions="Center"
-            HorizontalOptions="FillAndExpand">
-            
-            <Grid RowDefinitions="60*,25,60*,60*,60*,60*"
+    <VerticalStackLayout>
+        <Grid RowDefinitions="60*,25,60*,60*,60*,60*"
                   ColumnDefinitions="20*,20*,20*">
-                <Entry
+            <Entry
                 Text="{Binding Pin}" 
                 Placeholder="Enter your PIN"
                 Grid.Row="0"
                 Grid.Column="0"
                 MaxLength="4"
                 Grid.ColumnSpan="2"
-                HorizontalOptions="FillAndExpand"
-                VerticalOptions="FillAndExpand"
                 />
-                <Button
+            <Button
                 x:Name="LoginBtn"
                 Text="Login"
                 SemanticProperties.Hint="Submit pin"
                 Command="{Binding CheckPinCommand}"
                 Grid.Row="0"
-                Grid.Column="2"
-                HorizontalOptions="FillAndExpand"
-                VerticalOptions="FillAndExpand"/>
-                <Button
+                Grid.Column="2"/>
+            <Button
                 Text="1"
                 Command="{Binding PinButtonCommand}"
                 CommandParameter="1"
                 Grid.Row="2"
-                Grid.Column="0"
-                HorizontalOptions="FillAndExpand"
-                VerticalOptions="FillAndExpand" />
-                <Button
+                Grid.Column="0"/>
+            <Button
                 Text="2"
                 Grid.Row="2"
                 Grid.Column="1"
                 Command="{Binding PinButtonCommand}"
-                CommandParameter="2"
-                HorizontalOptions="FillAndExpand"
-                VerticalOptions="FillAndExpand" />
-                <Button
+                CommandParameter="2"/>
+            <Button
                 Text="3"
                 Grid.Row="2"
                 Grid.Column="2"
                 Command="{Binding PinButtonCommand}"
-                CommandParameter="3"
-                HorizontalOptions="FillAndExpand"
-                VerticalOptions="FillAndExpand" />
-                <Button
+                CommandParameter="3"/>
+            <Button
                 Text="4"
                 Grid.Row="3"
                 Grid.Column="0"
                 Command="{Binding PinButtonCommand}"
-                CommandParameter="4"
-                HorizontalOptions="FillAndExpand"
-                VerticalOptions="FillAndExpand" />
-                <Button
+                CommandParameter="4"/>
+            <Button
                 Text="5"
                 Grid.Row="3"
                 Grid.Column="1"
                 Command="{Binding PinButtonCommand}"
-                CommandParameter="5"
-                HorizontalOptions="FillAndExpand"
-                VerticalOptions="FillAndExpand" />
-                <Button
+                CommandParameter="5"/>
+            <Button
                 Text="6"
                 Grid.Row="3"
                 Grid.Column="2"
                 Command="{Binding PinButtonCommand}"
-                CommandParameter="6"
-                HorizontalOptions="FillAndExpand"
-                VerticalOptions="FillAndExpand" />
-                <Button
+                CommandParameter="6"/>
+            <Button
                 Text="7"
                 Grid.Row="4"
                 Grid.Column="0"
                 Command="{Binding PinButtonCommand}"
-                CommandParameter="7"
-                HorizontalOptions="FillAndExpand"
-                VerticalOptions="FillAndExpand" />
-                <Button
+                CommandParameter="7"/>
+            <Button
                 Text="8"
                 Grid.Row="4"
                 Grid.Column="1"
                 Command="{Binding PinButtonCommand}"
-                CommandParameter="8"
-                HorizontalOptions="FillAndExpand"
-                VerticalOptions="FillAndExpand" />
-                <Button
+                CommandParameter="8"/>
+            <Button
                 Text="9"
                 Grid.Row="4"
                 Grid.Column="2"
                 Command="{Binding PinButtonCommand}"
-                CommandParameter="9"
-                HorizontalOptions="FillAndExpand"
-                VerticalOptions="FillAndExpand" />
-                <Button
+                CommandParameter="9"/>
+            <Button
                 Text="0"
                 Grid.Row="5"
                 Grid.Column="0"
                 Command="{Binding PinButtonCommand}"
-                CommandParameter="0"
-                HorizontalOptions="FillAndExpand"
-                VerticalOptions="FillAndExpand" />
-                <Button
+                CommandParameter="0"/>
+            <Button
                 Text="Delete"
                 Grid.Row="5"
                 Grid.Column="1"
                 Grid.ColumnSpan="2"
-                Command="{Binding DelButtonCommand}"
-                HorizontalOptions="FillAndExpand"
-                VerticalOptions="FillAndExpand" />
-
-
-            </Grid>
-
-               
-  
-            <Label
-                Text="{Binding LoginError}"
-                SemanticProperties.HeadingLevel="Level1"
-                FontSize="32"
-                HorizontalOptions="Center" />
-
-        </VerticalStackLayout>
-    </ScrollView>
+                Command="{Binding DelButtonCommand}"/>
+        </Grid>
+        <BoxView></BoxView>
+        <Button Text="Change Theme" Command="{Binding ThemeButtonCommand}"></Button>
+    </VerticalStackLayout>
 
 </ContentPage>
